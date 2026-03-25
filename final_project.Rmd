@@ -1,0 +1,66 @@
+---
+title: "Analysis of Heart Failure Clinical Records"
+author: "Sarina Attri"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+params:
+  production: true
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE) # set global options
+```
+
+# Introduction
+
+The Heart Failure Clinical Records dataset was obtained from the UC Irvine Machine Learning Repository and includes patients with heart failure who visited a hospital in Punjab, Pakistan between April and December 2015. The dataset includes clinical features retrieved from medical records. 
+
+The analysis objectives are to:
+
+1. Describe characteristics of this sample of heart failure patients,
+2. Determine which clinical features are useful in predicting  death, and
+3. Evaluate the strength of the association between clinical features and death.
+
+```{r, here-i-am, include = FALSE}
+here::i_am(
+  "final_project.Rmd"
+)
+```
+
+```{r, load-data}
+
+```
+
+
+# Results
+
+## Descriptives
+```{r, descriptives}
+readRDS(here::here("output", "table1.rds"))
+```
+
+As shown in **Table 1**, the dataset includes `r nrow(data)` patients with heart failure and `r ncol(data)` clinical features obtained from medical records.  The median age was higher for patients who died (65 years) compared to patients who survived (60 years) the follow-up period. The median follow-up period for individuals who died was 45 days.
+
+In terms of clinical features, people who died had a higher prevalence of high blood pressure and anaemia, a lower median ejection fraction, and a higher median serum creatinine.
+
+## Logistic Regression Models
+
+```{r, model}
+readRDS(here::here("output", "table2.rds"))
+```
+
+
+Serum creatinine, ejection fraction, and age are the most useful variables in predicting death (**Table 2**). Individuals with a higher serum creatinine had a significantly higher odds of dying, with each additional mg/dL increasing the odds of death by an average of 95% (95% CI: 1.37, 2.86). In contrast, each percentage point increase in ejection fraction decreased the odds of death by an average of 7% (95% CI: 0.90, 0.95). Lastly, older age significantly increased odds of death, with each additional year increasing odds of death by an average of 5% (95% CI: 1.02, 1.08).
+
+The remaining predictors included in the model were not significantly associated with odds of death. Though not significant, the estimated magnitude of effect was large for sex, with males estimated to be at a 41% lower risk (95% CI: 0.26, 1.31).
+
+The magnitude of the association was strongest between serum creatinine and death. This suggests that serum creatinine is a key clinical feature that can be used by clinicians to assess odds of death.
+
+
+```{r, figure, message=FALSE}
+readRDS(here::here("output", "figure1.rds"))
+```
+
+**Figure 1** depicts the predicted probabilities of death based on serum creatinine and sex. The probability of death exponentially increases past serum creatinine values of over 2 mg/dL, though values that large are rare. Females have a higher predicted probability of death at all serum creatinine levels, which may reflect biological differences between females and males.
+
