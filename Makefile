@@ -20,3 +20,7 @@ output/figure1.rds: output/glm1.rds code/figure_code.R
 .PHONY: clean
 clean:
 	rm -f output/*.rds && rm -f *.html
+	
+.PHONY: install
+install:
+	Rscript -e "renv::restore(prompt = FALSE)"

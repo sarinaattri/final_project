@@ -40,3 +40,6 @@ The final report contains descriptive statistics, logistic regression results, a
 
 - The `code/figure_code.R` file creates *Figure 1*, which visualizes the the probability of death by serum creatinine levels and sex
 
+## How to Synchronize Package Repository
+
+- Execute `make install` in the terminal to restore the package environment for this project.
