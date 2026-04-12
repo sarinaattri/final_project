@@ -1,7 +1,7 @@
-R_LIBS_USER := C:/Users/sarin/AppData/Local/R/win-library/4.5
-export R_LIBS_USER
+# R_LIBS_USER := C:/Users/sarin/AppData/Local/R/win-library/4.5
+# export R_LIBS_USER
 
-final_report.html: output/data.rds output/table1.rds output/table2.rds \
+final_project.html: output/data.rds output/table1.rds output/table2.rds \
   output/glm1.rds output/figure1.rds code/render_code.R
 	Rscript code/render_code.R
 
@@ -21,6 +21,21 @@ output/figure1.rds: output/glm1.rds code/figure_code.R
 clean:
 	rm -f output/*.rds && rm -f *.html
 	
+.PHONY: dockerclean
+dockerclean: 
+	rm -f final_image && rm -f report/*.html
+	
 .PHONY: install
 install:
 	Rscript -e "renv::restore(prompt = FALSE)"
+	
+# docker rules
+PROJECTFILES = final_project.Rmd code/data_code.R code/descriptive_code.R code/figure_code.R code/regression_code.R code/render_code.R Makefile
+RENVFILES = renv.lock renv/activate.R renv/settings.json
+
+final_image:
+	docker pull sarinaattri/final_image
+	touch $@
+	
+report/final_project.html: final_image
+	docker run -v "/$$(pwd)/report":/final/final_project sarinaattri/final_image

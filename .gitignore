@@ -3,3 +3,4 @@ output/*.rds
 old
 .RData
 .Rhistory
+.Rproj.user

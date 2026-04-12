@@ -9,7 +9,7 @@ params:
 ---
 
 ```{r, setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE) # set global options
+knitr::opts_chunk$set(echo = FALSE) # set global options
 ```
 
 # Introduction
@@ -36,7 +36,7 @@ here::i_am(
 # Results
 
 ## Descriptives
-```{r, descriptives}
+```{r, descriptives, include=FALSE}
 readRDS(here::here("output", "table1.rds"))
 ```
 
@@ -46,7 +46,7 @@ In terms of clinical features, people who died had a higher prevalence of high b
 
 ## Logistic Regression Models
 
-```{r, model}
+```{r, model, include=FALSE}
 readRDS(here::here("output", "table2.rds"))
 ```
 
@@ -58,7 +58,7 @@ The remaining predictors included in the model were not significantly associated
 The magnitude of the association was strongest between serum creatinine and death. This suggests that serum creatinine is a key clinical feature that can be used by clinicians to assess odds of death.
 
 
-```{r, figure, message=FALSE}
+```{r, figure, message=FALSE, include=FALSE}
 readRDS(here::here("output", "figure1.rds"))
 ```
 

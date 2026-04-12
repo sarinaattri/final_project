@@ -3,10 +3,12 @@ library(ggplot2)
 library(labelled)
 library(gtsummary)
 library(here)
+library(broom)
+library(broom.helpers)
 
 here::i_am("code/data_code.R")
 
-data_source <- "C:/Users/sarin/OneDrive - Emory/Spring 2026/DATA550/final/heart_failure_clinical_records_dataset.csv"
+data_source <- here::here("heart_failure_clinical_records_dataset.csv")
 
 # read in data
 data <- read.csv(data_source, header = TRUE)
@@ -18,7 +20,7 @@ var_label(data) <- list(
   creatinine_phosphokinase = "Creatinine Phosphokinase (mcg/L)",
   diabetes = "Diabetes",
   ejection_fraction = "Ejection Fraction (%)",
-  high_blood_pressure = "High Blood Pressure",
+  high_blood_pressure = "High Blood WPressure",
   platelets = "Platelet Count (kiloplatelets/mL)",
   serum_creatinine = "Serum Creatinine (mg/dL)",
   serum_sodium = "Serum Sodium (mEq/L)",
