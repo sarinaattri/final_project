@@ -1,6 +1,13 @@
 # R_LIBS_USER := C:/Users/sarin/AppData/Local/R/win-library/4.5
 # export R_LIBS_USER
 
+report/final_project.html: final_image
+	@if [ "$$(uname)" = "Darwin" ]; then \
+		docker run -v "$$(pwd)/report":/final/final_project sarinaattri/final_image; \
+	else \
+		docker run -v "/$$(pwd)/report":/final/final_project sarinaattri/final_image; \
+	fi
+
 final_project.html: output/data.rds output/table1.rds output/table2.rds \
   output/glm1.rds output/figure1.rds code/render_code.R
 	Rscript code/render_code.R
@@ -23,7 +30,7 @@ clean:
 	
 .PHONY: dockerclean
 dockerclean: 
-	rm -f final_image && rm -f report/*.html
+	rm -f final_image && rm -f report/*.html && rm -f final_image
 	
 .PHONY: install
 install:
@@ -38,5 +45,4 @@ final_image:
 	docker pull sarinaattri/final_image
 	touch $@
 	
-report/final_project.html: final_image
-	docker run -v "/$$(pwd)/report":/final/final_project sarinaattri/final_image
+	

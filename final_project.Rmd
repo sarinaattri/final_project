@@ -9,7 +9,7 @@ params:
 ---
 
 ```{r, setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE) # set global options
+knitr::opts_chunk$set(include = FALSE) # set global options
 ```
 
 # Introduction
@@ -28,15 +28,10 @@ here::i_am(
 )
 ```
 
-```{r, load-data}
-
-```
-
-
 # Results
 
 ## Descriptives
-```{r, descriptives, include=FALSE}
+```{r, descriptives, include=FALSE, message=FALSE, warning=FALSE}
 readRDS(here::here("output", "table1.rds"))
 ```
 
