@@ -66,7 +66,7 @@ terminal.
 ## `docker run`: Generating Compiled Report Inside `report` Folder
 
 To generate the compiled report using by pulling the Docker image from
-DockerHub, execute `make report/final_report.html` or simply `make` in
+DockerHub, execute `make report/final_project.html` or simply `make` in
 the terminal.
 
 - This will run a container with an empty directory in your project
