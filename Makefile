@@ -36,13 +36,11 @@ dockerclean:
 install:
 	Rscript -e "renv::restore(prompt = FALSE)"
 	
-# docker rules
-PROJECTFILES = final_project.Rmd code/data_code.R code/descriptive_code.R code/figure_code.R code/regression_code.R code/render_code.R Makefile
-RENVFILES = renv.lock renv/activate.R renv/settings.json
-
-
 final_image:
 	docker pull sarinaattri/final_image
 	touch $@
 	
-	
+.PHONY: build
+build:
+	docker build -t sarinaattri/final_image .
+	touch final_image
