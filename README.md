@@ -91,7 +91,7 @@ The `Makefile` contains rules for building the report.
 `code/render_code.R` contains the code to render the report, which is
 called `final_project.Rmd`. The final report is called
 `final_project.html` and can be generated outside of a container by
-executing `make final_report.html` in the Terminal. This will create the
-report in the project directory (not the report folder) but may require
-manually restoring the package environment (instructions above). This is
-not the recommended method for creating the report.
+executing `make final_project.html` in the Terminal. This will create
+the report in the project directory (not the report folder) but may
+require manually restoring the package environment (instructions above).
+This is not the recommended method for creating the report.

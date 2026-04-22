@@ -1,7 +1,7 @@
 # R_LIBS_USER := C:/Users/sarin/AppData/Local/R/win-library/4.5
 # export R_LIBS_USER
 
-report/final_project.html: final_image
+report/final_project.html:
 	@if [ "$$(uname)" = "Darwin" ]; then \
 		docker run -v "$$(pwd)/report":/final/final_project sarinaattri/final_image; \
 	else \
@@ -36,11 +36,10 @@ dockerclean:
 install:
 	Rscript -e "renv::restore(prompt = FALSE)"
 	
-final_image:
+.PHONY: pull
+pull:
 	docker pull sarinaattri/final_image
-	touch $@
 	
 .PHONY: build
 build:
 	docker build -t sarinaattri/final_image .
-	touch final_image
