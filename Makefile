@@ -33,6 +33,7 @@ install:
 PROJECTFILES = final_project.Rmd code/data_code.R code/descriptive_code.R code/figure_code.R code/regression_code.R code/render_code.R Makefile
 RENVFILES = renv.lock renv/activate.R renv/settings.json
 
+
 final_image:
 	docker pull sarinaattri/final_image
 	touch $@
